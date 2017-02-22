@@ -8,28 +8,46 @@ def capture_webcam():
     ret_val, tempImg = camera.read()
     tempImg = cv.resize(tempImg, (320,240))
     imgAcw = np.zeros((tempImg.shape), np.float32)
+
+    cv.namedWindow('original', cv.WINDOW_NORMAL)
+    cv.resizeWindow('original', 320,240)
+    cv.moveWindow('original', 0, 0)
+
+    cv.namedWindow('grayscale', cv.WINDOW_NORMAL)
+    cv.resizeWindow('grayscale', 320,240)
+    cv.moveWindow('grayscale', 320, 0)
+
+    cv.namedWindow('32f, 3 channel', cv.WINDOW_NORMAL)
+    cv.resizeWindow('32f, 3 channel', 320,240)
+    cv.moveWindow('32f, 3 channel', 0, 285)
+
+    cv.namedWindow('difference', cv.WINDOW_NORMAL)
+    cv.resizeWindow('difference', 320,240)
+    cv.moveWindow('difference', 320, 285)
+
+    cv.namedWindow('threshhold', cv.WINDOW_NORMAL)
+    cv.resizeWindow('threshhold', 320,240)
+    cv.moveWindow('threshhold', 0, 525)
+
+    cv.namedWindow('contour', cv.WINDOW_NORMAL)
+    cv.resizeWindow('contour', 320,240)
+    cv.moveWindow('contour', 320, 525)
     
     while True:
         ret_val, img = camera.read()
         if ret_val:
             img = cv.flip(img, 1)
-            cv.namedWindow('regular', cv.WINDOW_NORMAL)
-            cv.resizeWindow('regular', 320,240)
-            cv.moveWindow('regular', 0, 0)
             img = cv.resize(img, (320,240))
-            cv.imshow('regular', img)
+            cv.imshow('original', img)
             imgBlank = img.copy()
 
-            cv.namedWindow('grayscale', cv.WINDOW_NORMAL)
-            cv.resizeWindow('grayscale', 320,240)
-            cv.moveWindow('grayscale', 320, 0)
+            #printing grayscale image
             grayImg = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
             cv.imshow('grayscale', grayImg)
 
-            cv.namedWindow('capture clone - image 1', cv.WINDOW_NORMAL)
-            cv.resizeWindow('capture clone - image 1', 320,240)
-            cv.moveWindow('capture clone - image 1', 0, 265)
-            
+            #printing image in 32f, 3 channel
+            #threeChannelImg = cv.cvtColor(grayImg, cv.COLOR_GRAY2BGR)
+            cv.imshow('32f, 3 channel', img)
 
             #brightening the image
             img_yuv = cv.cvtColor(img, cv.COLOR_BGR2YUV)
@@ -44,7 +62,9 @@ def capture_webcam():
             diff = cv.absdiff(blur, imgBlank)
             #converting the difference to grayscale
             diffGray =cv.cvtColor(diff, cv.COLOR_BGR2GRAY)
-            cv.imshow('capture clone - image 1', diffGray)
+
+            #printing the difference
+            cv.imshow('difference', diffGray)
 
             #taking threshhold with small value
             ret,thresh = cv.threshold(diffGray,2,255,0)
@@ -54,10 +74,7 @@ def capture_webcam():
             ret,thresh1 = cv.threshold(blur1,250,255,0)
 
             #swapping white pixels with black
-            cv.namedWindow('new frame', cv.WINDOW_NORMAL)
-            cv.resizeWindow('new frame', 320,240)
-            cv.moveWindow('new frame', 320, 265)
-            cv.imshow('new frame', cv.bitwise_not(thresh1))
+            cv.imshow('threshhold', cv.bitwise_not(thresh1))
 
             #finding contours to moving objects
             im2, contours, hierarchy = cv.findContours(thresh1,cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)
@@ -65,14 +82,10 @@ def capture_webcam():
             for contour in contours:
                 #getting significant blobs
                 if cv.contourArea(contour) >= 5000:
-                    print(cv.contourArea(contour))
                     (x, y, w, h) = cv.boundingRect(contour)
                     cv.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
 
             #printing contours on the original image
-            cv.namedWindow('contour', cv.WINDOW_NORMAL)
-            cv.resizeWindow('contour', 320,240)
-            cv.moveWindow('contour', 0, 505)
             cv.imshow('contour', img)
             
         if cv.waitKey(1) == 27:
