@@ -17,9 +17,9 @@ def capture_webcam():
     cv.resizeWindow('grayscale', 320,240)
     cv.moveWindow('grayscale', 320, 0)
 
-    cv.namedWindow('32f, 3 channel', cv.WINDOW_NORMAL)
-    cv.resizeWindow('32f, 3 channel', 320,240)
-    cv.moveWindow('32f, 3 channel', 0, 285)
+    cv.namedWindow('bright', cv.WINDOW_NORMAL)
+    cv.resizeWindow('bright', 320,240)
+    cv.moveWindow('bright', 0, 285)
 
     cv.namedWindow('difference', cv.WINDOW_NORMAL)
     cv.resizeWindow('difference', 320,240)
@@ -45,14 +45,13 @@ def capture_webcam():
             grayImg = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
             cv.imshow('grayscale', grayImg)
 
-            #printing image in 32f, 3 channel
-            threeChannelImg = cv.cvtColor(img, cv.COLOR_BGR2HSV)
-            cv.imshow('32f, 3 channel', threeChannelImg)
-
             #brightening the image
             img_yuv = cv.cvtColor(img, cv.COLOR_BGR2YUV)
             img_yuv[:,:,0] = cv.equalizeHist(img_yuv[:,:,0])
             img_output = cv.cvtColor(img_yuv, cv.COLOR_YUV2BGR)
+            #printing the brightened image
+            cv.imshow('bright', img_output)
+            
             #blurring the brightened image
             blur = cv.GaussianBlur(img_output, (5,5),0)
 
