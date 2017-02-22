@@ -27,11 +27,11 @@ def capture_webcam():
 
     cv.namedWindow('threshhold', cv.WINDOW_NORMAL)
     cv.resizeWindow('threshhold', 320,240)
-    cv.moveWindow('threshhold', 0, 525)
+    cv.moveWindow('threshhold', 0, 545)
 
     cv.namedWindow('contour', cv.WINDOW_NORMAL)
     cv.resizeWindow('contour', 320,240)
-    cv.moveWindow('contour', 320, 525)
+    cv.moveWindow('contour', 320, 545)
     
     while True:
         ret_val, img = camera.read()
@@ -46,8 +46,8 @@ def capture_webcam():
             cv.imshow('grayscale', grayImg)
 
             #printing image in 32f, 3 channel
-            #threeChannelImg = cv.cvtColor(grayImg, cv.COLOR_GRAY2BGR)
-            cv.imshow('32f, 3 channel', img)
+            threeChannelImg = cv.cvtColor(img, cv.COLOR_BGR2HSV)
+            cv.imshow('32f, 3 channel', threeChannelImg)
 
             #brightening the image
             img_yuv = cv.cvtColor(img, cv.COLOR_BGR2YUV)
