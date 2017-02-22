@@ -8,6 +8,7 @@ def capture_webcam():
     ret_val, tempImg = camera.read()
     tempImg = cv.resize(tempImg, (320,240))
     imgAcw = np.zeros((tempImg.shape), np.float32)
+    
     while True:
         ret_val, img = camera.read()
         if ret_val:
@@ -34,26 +35,46 @@ def capture_webcam():
             img_yuv = cv.cvtColor(img, cv.COLOR_BGR2YUV)
             img_yuv[:,:,0] = cv.equalizeHist(img_yuv[:,:,0])
             img_output = cv.cvtColor(img_yuv, cv.COLOR_YUV2BGR)
-            cv.imshow('capture clone - image 1', img_output)
+            #blurring the brightened image
             blur = cv.GaussianBlur(img_output, (5,5),0)
 
             cv.accumulateWeighted(blur, imgAcw, 0.32)
             cv.convertScaleAbs(imgAcw, imgBlank, 1.0, 0.0)
+            #taking the difference
             diff = cv.absdiff(blur, imgBlank)
+            #converting the difference to grayscale
             diffGray =cv.cvtColor(diff, cv.COLOR_BGR2GRAY)
-            
+            cv.imshow('capture clone - image 1', diffGray)
+
+            #taking threshhold with small value
             ret,thresh = cv.threshold(diffGray,2,255,0)
+            #blurring
             blur1 = cv.GaussianBlur(thresh, (5,5), 1.5)
+            #taking the threshhold with large value
             ret,thresh1 = cv.threshold(blur1,250,255,0)
-            im2, contours, hierarchy = cv.findContours(thresh1,cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)
-            
-            cv.drawContours(thresh1, contours, -1, (0,255,0), 2)
-            
+
+            #swapping white pixels with black
             cv.namedWindow('new frame', cv.WINDOW_NORMAL)
             cv.resizeWindow('new frame', 320,240)
             cv.moveWindow('new frame', 320, 265)
-            cv.imshow('new frame', thresh1)
+            cv.imshow('new frame', cv.bitwise_not(thresh1))
 
+            #finding contours to moving objects
+            im2, contours, hierarchy = cv.findContours(thresh1,cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)
+            imgg = np.zeros((tempImg.shape), np.float32)
+            for contour in contours:
+                #getting significant blobs
+                if cv.contourArea(contour) >= 5000:
+                    print(cv.contourArea(contour))
+                    (x, y, w, h) = cv.boundingRect(contour)
+                    cv.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 1)
+
+            #printing contours on the original image
+            cv.namedWindow('contour', cv.WINDOW_NORMAL)
+            cv.resizeWindow('contour', 320,240)
+            cv.moveWindow('contour', 0, 505)
+            cv.imshow('contour', img)
+            
         if cv.waitKey(1) == 27:
             break
         
