@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni/Android.mk",
+    "/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni/Application.mk"
+  ],
+  "cleanCommands": [
+    "/Users/utkarshgoel/Library/Android/sdk/ndk-bundle/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni/Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-9 NDK_OUT\u003d/Users/utkarshgoel/Desktop/stuff/Work/Course_Material/Comp_Vision/Ass3/face-detection4/openCVSamplefacedetection/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003d/Users/utkarshgoel/Desktop/stuff/Work/Course_Material/Comp_Vision/Ass3/face-detection4/openCVSamplefacedetection/build/intermediates/ndkBuild/debug/lib clean"
+  ],
+  "libraries": {
+    "detection_based_tracker-debug-armeabi": {
+      "buildCommand": "/Users/utkarshgoel/Library/Android/sdk/ndk-bundle/ndk-build NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003d/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni/Android.mk NDK_APPLICATION_MK\u003d/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni/Application.mk APP_ABI\u003darmeabi NDK_ALL_ABIS\u003darmeabi NDK_DEBUG\u003d1 APP_PLATFORM\u003dandroid-9 NDK_OUT\u003d/Users/utkarshgoel/Desktop/stuff/Work/Course_Material/Comp_Vision/Ass3/face-detection4/openCVSamplefacedetection/build/intermediates/ndkBuild/debug/obj NDK_LIBS_OUT\u003d/Users/utkarshgoel/Desktop/stuff/Work/Course_Material/Comp_Vision/Ass3/face-detection4/openCVSamplefacedetection/build/intermediates/ndkBuild/debug/lib /Users/utkarshgoel/Desktop/stuff/Work/Course_Material/Comp_Vision/Ass3/face-detection4/openCVSamplefacedetection/build/intermediates/ndkBuild/debug/obj/local/armeabi/libdetection_based_tracker.so",
+      "toolchain": "toolchain-armeabi",
+      "abi": "armeabi",
+      "artifactName": "detection_based_tracker",
+      "files": [
+        {
+          "src": "/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni/DetectionBasedTracker_jni.cpp",
+          "flags": "\"-gcc-toolchain\" \"/Users/utkarshgoel/Library/Android/sdk/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64\" \"-fpic\" \"-ffunction-sections\" \"-funwind-tables\" \"-fstack-protector-strong\" \"-Wno-invalid-command-line-argument\" \"-Wno-unused-command-line-argument\" \"-no-canonical-prefixes\" \"-fno-integrated-as\" \"-g\" \"-target\" \"armv5te-none-linux-androideabi\" \"-march\u003darmv5te\" \"-mtune\u003dxscale\" \"-msoft-float\" \"-fno-exceptions\" \"-fno-rtti\" \"-mthumb\" \"-O0\" \"-UNDEBUG\" \"-fno-limit-debug-info\" \"-I/Users/utkarshgoel/Downloads/OpenCV-android-sdk/sdk/native/jni/include/opencv\" \"-I/Users/utkarshgoel/Downloads/OpenCV-android-sdk/sdk/native/jni/include\" \"-I/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni\" \"-I/Users/utkarshgoel/Library/Android/sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include\" \"-I/Users/utkarshgoel/Library/Android/sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi/include\" \"-I/Users/utkarshgoel/Library/Android/sdk/ndk-bundle/sources/cxx-stl/gnu-libstdc++/4.9/include/backward\" \"-I/Users/utkarshgoel/Downloads/OpenCV-android-sdk/samples/face-detection/jni\" \"-DANDROID\" \"-fPIC\" \"-DANDROID\" \"-fsigned-char\" \"-Wa,--noexecstack\" \"-Wformat\" \"-Werror\u003dformat-security\" \"-frtti\" \"-fexceptions\" \"--sysroot\" \"/Users/utkarshgoel/Library/Android/sdk/ndk-bundle/platforms/android-9/arch-arm\""
+        }
+      ],
+      "output": "/Users/utkarshgoel/Desktop/stuff/Work/Course_Material/Comp_Vision/Ass3/face-detection4/openCVSamplefacedetection/build/intermediates/ndkBuild/debug/obj/local/armeabi/libdetection_based_tracker.so"
+    }
+  },
+  "toolchains": {
+    "toolchain-armeabi": {
+      "cppCompilerExecutable": "/Users/utkarshgoel/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}

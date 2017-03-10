@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/utkarshgoel/Desktop/stuff/Work/Course_Material/Comp_Vision/Ass3/face-detection4/openCVSamplefacedetection/build/intermediates/exploded-aar/face-detection4/openCVLibrary320/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="038e8806866760ccd8568b401b8052e937e4be1a">
+        <dex dex="/Users/utkarshgoel/Desktop/stuff/Work/Course_Material/Comp_Vision/Ass3/face-detection4/openCVSamplefacedetection/build/intermediates/pre-dexed/debug/face-detection4-openCVLibrary320-unspecified_1b61e672a65395d7a06296bd00301dddae398b3b.jar" />
+    </item>
+
+</items>
